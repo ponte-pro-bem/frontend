@@ -1,0 +1,56 @@
+{
+  "name": "frontend-ponte-pro-bem",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@chakra-ui/icons": "^2.1.1",
+    "@chakra-ui/react": "^2.8.2",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@eslint/js": "^9.3.0",
+    "@faker-js/faker": "^8.4.1",
+    "@hookform/resolvers": "^3.4.2",
+    "@nozbe/microfuzz": "^1.0.0",
+    "@tanstack/react-query": "^5.37.1",
+    "dayjs": "^1.11.11",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-react": "^7.34.1",
+    "framer-motion": "^11.2.6",
+    "fuzzysort": "^3.0.1",
+    "next": "14.2.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.51.5",
+    "react-icons": "^5.2.1",
+    "react-intersection-observer": "^9.10.2",
+    "typescript-eslint": "^7.10.0",
+    "unsplash-js": "^7.0.19",
+    "yup": "^1.4.0",
+    "zod": "link:@hookform/resolvers/zod",
+    "zustand": "^4.5.2"
+  },
+  "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.35.6",
+    "@types/node": "^20.12.12",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "eslint": "8.1.0",
+    "eslint-config-next": "14.2.3",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "2.26.0",
+    "faker": "^6.6.6",
+    "typescript": "^5.4.5"
+  },
+  "resolutions": {
+    "eslint-plugin-import": "2.26.0"
+  }
+}
