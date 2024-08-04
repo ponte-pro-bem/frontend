@@ -19,7 +19,7 @@ export default function CampaignHomeSection({
         <EntitySectionHeader
           title="Campanhas"
           subtitle="Apoie campanhas em todo o Brasil"
-          hrefViewAllPage="/campaigns"
+          hrefViewAllPage="/campanhas"
         />
 
         <HStack

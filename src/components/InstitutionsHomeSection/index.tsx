@@ -18,7 +18,7 @@ export default function InstitutionHomeSection({
         <EntitySectionHeader
           title="Organizações"
           subtitle="Colabore com nossas organizações parceiras"
-          hrefViewAllPage="/institutions"
+          hrefViewAllPage="/organizacoes"
         />
 
         <HStack
