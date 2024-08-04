@@ -1,48 +1,40 @@
-import { useMemo, useState } from 'react';
-import { useInView } from 'react-intersection-observer';
-import { FiltersFormValues } from '~/components/FilterForm/FilterForm.types';
-import useQueryInfinityHouses from './hooks/useQueryInfinityHouses';
+import { useDisclosure } from "@chakra-ui/react";
+import { useState } from "react";
+import { Campaign } from "./hooks/useQueryCampaigns";
+import { Institution } from "./hooks/useQueryInstitutions";
+
+export enum ENTITY {
+  CAMPAIGNS = 'campaigns',
+  INSTITUTIONS = 'institutions'
+}
 
 export default function useHomeController() {
-  const [filters, setFilters] = useState<FiltersFormValues | undefined>(undefined);
+  const [selectedInstitution, setSelectedInstitution] = useState<Institution | null>(null);
+  const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>(null);
+  
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const {
-    data,
-    refetch,
-    isRefetching,
-    fetchNextPage,
-    hasNextPage,
-    isFetching,
-    isFetchingNextPage,
-  } = useQueryInfinityHouses({ filters });
+  const onSelectItem = (itemList: Array<Institution | Campaign>, itemId: string, type: ENTITY) => {
+    const [item] = itemList.filter(({ id }) => id === itemId)
 
-  const houses = useMemo(
-    () => data?.pages.flatMap((page) => page.data) || [],
-    [data],
-  );
+    if (type === ENTITY.INSTITUTIONS) {
+      setSelectedInstitution(item);
+      setSelectedCampaign(null);
+    }
+    
+    if (type === ENTITY.CAMPAIGNS) {
+      setSelectedCampaign(item as Campaign);
+      setSelectedInstitution(null);
+    }
 
-  const { ref: houseListFooterRef } = useInView({
-    onChange: (inView) => {
-      if (inView) {
-        fetchNextPage();
-      }
-    },
-    triggerOnce: false,
-  });
-
-  const handleSubmitSearch = (formValues: FiltersFormValues) => {
-    setFilters(formValues);
-    refetch();
+    onOpen();
   };
 
   return {
-    houses,
-    isFetching,
-    isFetchingNextPage,
-    hasNextPage,
-    fetchNextPage,
-    houseListFooterRef,
-    handleSubmitSearch,
-    isRefetching,
+    onSelectItem,
+    isOpen,
+    onClose,
+    selectedCampaign,
+    selectedInstitution
   };
 }
