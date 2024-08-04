@@ -9,7 +9,7 @@ export const Button = defineStyleConfig({
   },
   variants: {
     outline: {
-      bg: 'brand.deapTeal',
+      bg: 'brand.lightText',
       textTransform: 'none',
       borderRadius: '16px',
       color: 'white',
@@ -17,6 +17,15 @@ export const Button = defineStyleConfig({
       _hover: {
         bg: 'brand.deapTeal',
         opacity: 0.8,
+      },
+    },
+    ghost: {
+      textTransform: 'none',
+      borderRadius: '16px',
+      color: 'brand.lightText',
+      _focus: {},
+      _hover: {
+        color: 'brand.darkText',
       },
     },
   },
