@@ -1,16 +1,15 @@
-import type { Metadata } from "next";
+import { Box } from "@chakra-ui/react";
+// import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import React from "react";
-import PageHeader from "~/components/PageHeader/PageHeader";
 import Providers from "./providers";
-import { Box } from "@chakra-ui/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "",
-  description: "",
-};
+// export const metadata: Metadata = {
+//   title: "Ponte pro bem",
+//   description: "",
+// };
 
 export default function RootLayout({
   children,

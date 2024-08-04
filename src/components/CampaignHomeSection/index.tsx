@@ -15,7 +15,7 @@ export default function CampaignHomeSection({
     useQueryCampaigns();
   return (
     <div id="campanhas" style={{ background: "#B6C7AA33" }}>
-      <Flex h={"calc(100vh)"} flexDir={"column"} mx={12} mt={24}>
+      <Flex flexDir={"column"} mx={12} mt={24}>
         <EntitySectionHeader
           title="Campanhas"
           subtitle="Apoie campanhas em todo o Brasil"
