@@ -3,7 +3,6 @@
 import {
   Flex
 } from "@chakra-ui/react";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import AboutHomeSection from "~/components/AboutHomeSection";
 import CampaignHomeSection from "~/components/CampaignHomeSection";
 import ContactHomeSection from "~/components/ContactHomeSection";

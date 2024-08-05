@@ -1,0 +1,1 @@
+export interface HomeSectionListPlaceholderProps {isLoading: boolean, error: boolean }

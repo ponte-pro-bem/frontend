@@ -5,6 +5,7 @@ import { FaPix } from "react-icons/fa6";
 import { QRCodeSVG } from "qrcode.react";
 import { MdCheck, MdContentCopy } from "react-icons/md";
 import { useState } from "react";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
 export default function DetailsDrawerHome({ item, isOpen, onClose }: DetailsDrawerProps){
     if (!item) return null;

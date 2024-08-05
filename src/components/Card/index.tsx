@@ -6,7 +6,6 @@ import {
     VStack,
 } from "@chakra-ui/react";
 import Image from "next/image";
-import { ENTITY } from "~/app/page.controller";
 import { CardProps } from "./types";
 import { Institution } from "~/app/hooks/useQueryInstitutions";
 import { Campaign } from "~/app/hooks/useQueryCampaigns";
@@ -17,6 +16,7 @@ export default function Card<T extends Institution & Partial<Campaign>>({ item, 
       onClick={() => onSelectItem(item.id)}
       h={580}
       minW={400}
+      w={400}
       transition={"all 1.5s easy-in-out"}
       _hover={{
         transform: "scale(1.01)",

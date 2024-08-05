@@ -6,10 +6,6 @@ import Providers from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
-// export const metadata: Metadata = {
-//   title: "Ponte pro bem",
-//   description: "",
-// };
 
 export default function RootLayout({
   children,
@@ -25,6 +21,7 @@ export default function RootLayout({
           sizes="180x180"
           href="/apple-touch-icon.png"
         ></link>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
         <link
           rel="icon"
           type="image/png"
