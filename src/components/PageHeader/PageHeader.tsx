@@ -26,7 +26,7 @@ export default function PageHeader() {
     },
   ];
   const route = useRouter();
-  const handleClick = (link) => {
+  const handleClick = (link: string) => {
     route.push(link)
     setActiveSection(link)
   
