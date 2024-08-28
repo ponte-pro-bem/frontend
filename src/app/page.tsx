@@ -5,7 +5,7 @@ import {
   Flex,
   Text,
   useBreakpointValue,
-  useMediaQuery
+  useMediaQuery,
 } from "@chakra-ui/react";
 import AboutHomeSection from "~/components/AboutHomeSection";
 import CampaignHomeSection from "~/components/CampaignHomeSection";
@@ -26,20 +26,26 @@ export default function Home() {
     selectedInstitution,
   } = useHomeController();
 
-  const [isDesktop] = useMediaQuery('(min-width: 800px)', { fallback: false, ssr: false });
+  if (typeof window !== "undefined") {
+    const [isDesktop] = useMediaQuery("(min-width: 800px)", {
+      fallback: false,
+      ssr: false,
+    });
 
-  if (!isDesktop) {
-   return (
-    <main>
-      <Center flexDir={"column"} h="100vh">
-      <Text textAlign={"center"}>No momento não estamos disponíveis para dispositivos móveis</Text>
-      <br />
-      <Text>Acesse ao site utilizando um computador</Text>
-      </Center>
-    </main>
-   )
+    if (!isDesktop) {
+      return (
+        <main>
+          <Center flexDir={"column"} h="100vh">
+            <Text textAlign={"center"}>
+              No momento não estamos disponíveis para dispositivos móveis
+            </Text>
+            <br />
+            <Text>Acesse ao site utilizando um computador</Text>
+          </Center>
+        </main>
+      );
+    }
   }
-
 
   return (
     <main>
