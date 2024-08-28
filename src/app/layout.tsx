@@ -14,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" style={{ scrollBehavior: "smooth" }}>
-      <title>Ponte pro bem</title>
+      <title>Ponte do bem</title>
       <head>
         <link
           rel="apple-touch-icon"

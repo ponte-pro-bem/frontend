@@ -85,7 +85,9 @@ export const CampaignsLis = () => {
         />
         {isLoadingCampaigns ? (
           <Text>Carregando...</Text>
-        ) : (
+        ) : filteredCampaigns?.length === 0 ? (
+          <Text>Nenhuma campanha encontrada</Text>
+        ): (
           <Grid templateColumns="repeat(5, 1fr)" gap={6} w="100%">
             {filteredCampaigns?.map((campaign) => (
               <GridItem key={campaign.id}>

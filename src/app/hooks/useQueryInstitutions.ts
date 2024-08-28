@@ -15,8 +15,8 @@ export default function useQueryInstitutions() {
   const query = useQuery({
     queryKey: [QUERY_KEYS.institutions],
     queryFn: async () => {
-      const { data } = await axios.get<Institution[]>('http://localhost:8080/institutions')
-        
+      const { data } = await axios.get<Institution[]>(`${process.env.NEXT_PUBLIC_APP_URL}/institutions`)
+
       return data
     },
   });

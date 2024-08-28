@@ -1,4 +1,4 @@
-import { useDisclosure } from "@chakra-ui/react";
+import { useBreakpointValue, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
 import { Campaign } from "./hooks/useQueryCampaigns";
 import { Institution } from "./hooks/useQueryInstitutions";
@@ -9,6 +9,7 @@ export enum ENTITY {
 }
 
 export default function useHomeController() {
+
   const [selectedInstitution, setSelectedInstitution] = useState<Institution | null>(null);
   const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>(null);
   

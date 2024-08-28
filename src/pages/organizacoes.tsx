@@ -88,8 +88,10 @@ export const InstitutionsPage = () => {
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
-        {!isLoadingInstitutions ? (
+        {isLoadingInstitutions ? (
           <Text>Carregando...</Text>
+        ) : filteredInstitutions?.length === 0 ? (
+          <Text>Nenhuma instituição encontrada</Text>
         ) : (
           <SimpleGrid columns={{ base: 1, lg: 2, xl: 3, '2xl': 4 }} gap={6} w="100%">
             {filteredInstitutions?.map((institution) => (

@@ -101,7 +101,7 @@ export default function ContactHomeSection(){
               <Text fontSize={"lg"} fontWeight={600} pt={6}>
                 Magnus Carlsen
               </Text>
-              <Text>Idealizador da Ponte pro Bem</Text>
+              <Text>Idealizador da Ponte do bem</Text>
             </Stack>
           </HStack>
         </Flex>
