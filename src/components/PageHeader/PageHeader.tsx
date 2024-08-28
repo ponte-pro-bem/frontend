@@ -1,5 +1,5 @@
 "use client";
-import logo from './logo.png';
+import logo from '../../public/logo.png';
 import { Box, Button, Flex, HStack, Spacer } from "@chakra-ui/react";
 import Image from 'next/image';
 import { usePathname, useRouter } from "next/navigation";
