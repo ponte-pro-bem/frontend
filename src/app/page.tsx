@@ -26,7 +26,7 @@ export default function Home() {
     selectedInstitution,
   } = useHomeController();
 
-  const [isDesktop] = useMediaQuery('(min-width: 800px)', { ssr: false });
+  const [isDesktop] = useMediaQuery('(min-width: 800px)', { fallback: false, ssr: false });
 
   if (!isDesktop) {
    return (
