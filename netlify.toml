@@ -2,8 +2,3 @@
   base    = ""
   publish = "build/"
   command = "CI='' npm run build"
-
-[[redirects]]
-  from = "/*"
-  to = "public/index.html"
-  status = 200
