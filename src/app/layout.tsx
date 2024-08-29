@@ -46,13 +46,13 @@ export default function RootLayout({
       ></link>
         <meta name="msapplication-TileColor" content="#da532c"></meta>
         <meta name="theme-color" content="#ffffff"></meta>
-      </head>
       <link rel="preconnect" href="https://fonts.googleapis.com"></link>
       <link
         rel="preconnect"
         href="https://fonts.gstatic.com"
         crossOrigin="anonymous"
       ></link>
+      </head>
       
       <body className={inter.className}>
         <Providers>

@@ -10,7 +10,7 @@ export default function Elipse() {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <circle cx="89" cy="22" r="130" stroke="#B3C7AA" stroke-width="40" />
+        <circle cx="89" cy="22" r="130" stroke="#B3C7AA" strokeWidth="40" />
       </svg>
     </Icon>
   );

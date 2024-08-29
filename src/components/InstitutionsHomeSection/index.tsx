@@ -14,13 +14,6 @@ export default function InstitutionHomeSection({
   const { data: institutions, isLoading: isLoadingInstitutions, error, ...rest } =
     useQueryInstitutions();
 
-    console.log({
-      institutions,
-      isLoadingInstitutions,
-      error,
-      rest
-    });
-    
   return (
     <div id="organizacoes">
       <Flex h={"calc(100vh)"} flexDir={"column"} mx={12} mt={24}>

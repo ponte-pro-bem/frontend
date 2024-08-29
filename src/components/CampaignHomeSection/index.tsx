@@ -49,6 +49,7 @@ export default function CampaignHomeSection({
             campaigns?.map((campaign) => {
               return (
                 <Card<Campaign>
+                  key={campaign.id}
                   item={campaign}
                   onSelectItem={(campaignId) => {
                     onSelectCampaign(campaigns, campaignId);

@@ -30,10 +30,6 @@ export default function PageHeader() {
     setActiveSection(link);
   };
 
-  const a = usePathname();
-  useEffect(() => {
-    console.log(a);
-  }, []);
 
   return (
     <Flex

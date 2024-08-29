@@ -94,7 +94,6 @@ export const CampaignsLis = () => {
                 <Card<Campaign>
                   item={campaign}
                   onSelectItem={(campaignId) => {
-                    console.log(campaignId);
                     
                     onSelectItem(filteredCampaigns, campaignId);
                   }}
