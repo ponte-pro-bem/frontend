@@ -29,9 +29,6 @@ importers:
       '@hookform/resolvers':
         specifier: ^3.4.2
         version: 3.9.0(react-hook-form@7.53.0(react@18.3.1))
-      '@netlify/plugin-nextjs':
-        specifier: ^5.7.0
-        version: 5.7.0
       '@nozbe/microfuzz':
         specifier: ^1.0.0
         version: 1.0.0
@@ -1650,10 +1647,6 @@ packages:
 
   '@leichtgewicht/ip-codec@2.0.5':
     resolution: {integrity: sha512-Vo+PSpZG2/fmgmiNzYK9qWRh8h/CHrwD0mo1h1DzL4yzHNSfWYujGTYsWGreD000gcgmZ7K4Ys6Tx9TxtsKdDw==}
-
-  '@netlify/plugin-nextjs@5.7.0':
-    resolution: {integrity: sha512-HFZBHz70oDmw/5tKXH3F6WX4X01/DgY9etjLXjfDSxYl+AiNKwL+1kePUMp73zMFN5M+TU/TsEaFr38wmE6EVQ==}
-    engines: {node: '>=18.0.0'}
 
   '@next/eslint-plugin-next@14.2.3':
     resolution: {integrity: sha512-L3oDricIIjgj1AVnRdRor21gI7mShlSwU/1ZGHmqM3LzHhXXhdkrfeNY5zif25Bi5Dd7fiJHsbhoZCHfXYvlAw==}
@@ -8661,8 +8654,6 @@ snapshots:
       '@jridgewell/sourcemap-codec': 1.5.0
 
   '@leichtgewicht/ip-codec@2.0.5': {}
-
-  '@netlify/plugin-nextjs@5.7.0': {}
 
   '@next/eslint-plugin-next@14.2.3':
     dependencies:
