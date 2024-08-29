@@ -2,33 +2,36 @@
 import { Button, Flex, HStack, Spacer } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import Logo from "../../app/logo";
+import { useNavigate } from "react-router";
+
+import { Link, animateScroll } from "react-scroll";
+
 export default function PageHeader() {
   const [activeSection, setActiveSection] = useState("#inicio");
-
+  const navigate = useNavigate();
   const menuItems = [
     {
       name: "Sobre o projeto",
-      link: "#sobre-o-projeto",
+      link: "sobre-o-projeto",
     },
     {
       name: "Organizações",
-      link: "#organizacoes",
+      link: "organizacoes",
     },
     {
       name: "Campanhas",
-      link: "#campanhas",
+      link: "campanhas",
     },
     {
       name: "Contato",
-      link: "#contato",
+      link: "contato",
     },
   ];
   // const route = useRouter();
   const handleClick = (link: string) => {
-    // route.push(link);
-    // setActiveSection(link);
+    // navigate(link);
+    setActiveSection(link);
   };
-
 
   return (
     <Flex
@@ -45,7 +48,8 @@ export default function PageHeader() {
     >
       <Button
         onClick={() => {
-          handleClick("#inicio");
+    animateScroll.scrollToTop()
+
         }}
         variant={"ghost"}
         _hover={{
@@ -57,19 +61,26 @@ export default function PageHeader() {
       <Spacer></Spacer>
       <HStack>
         {menuItems.map((item, index) => (
-          <Button
-            fontWeight={activeSection === item.link ? 700 : 400}
-            _hover={{
-              backgroundColor: "brand.lightGreen",
-              fontWeight: 700,
-            }}
-            fontSize={"lg"}
-            variant={"ghost"}
-            key={index}
-            onClick={() => handleClick(item.link)}
+          <Link
+            to={item.link}
+            spy={true}
+            smooth={true}
+            offset={-70}
+            duration={500}
           >
-            {item.name}
-          </Button>
+            <Button
+              fontWeight={activeSection === item.link ? 700 : 400}
+              _hover={{
+                backgroundColor: "brand.lightGreen",
+              }}
+              fontSize={"lg"}
+              variant={"ghost"}
+              key={index}
+              onClick={() => handleClick(item.link)}
+            >
+              {item.name}
+            </Button>
+          </Link>
         ))}
       </HStack>
     </Flex>
