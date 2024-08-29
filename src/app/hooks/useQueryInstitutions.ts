@@ -16,7 +16,7 @@ export default function useQueryInstitutions() {
     queryKey: [QUERY_KEYS.institutions],
     queryFn: async () => {
       const { data } = await axios.get<Institution[]>(
-        `http://app.pontedobem.org/institutions`
+        `https://d2x45crat7p1yk.cloudfront.net/institutions`
       );
 
       return data;
