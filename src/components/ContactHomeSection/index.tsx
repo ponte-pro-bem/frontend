@@ -43,7 +43,7 @@ export default function ContactHomeSection(){
               <HStack w="70%" mt={4}>
                 <Tooltip label="Whatsapp">
                   <Link
-                    href={"https://wa.me/5555859680395?text=oiee%20bb%20gostosa"}
+                    href={"https://wa.me/"}
                     target="_blank"
                   >
                     <IconButton
