@@ -1,10 +1,10 @@
 import { Box } from "@chakra-ui/react";
 // import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import React from "react";
 import Providers from "./providers";
 
-const inter = Inter({ subsets: ["latin"] });
+const montserrat = Montserrat({ subsets: ["latin"] });
 
 
 export default function RootLayout({
@@ -54,7 +54,7 @@ export default function RootLayout({
       ></link>
       </head>
       
-      <body className={inter.className}>
+      <body className={montserrat.className}>
         <Providers>
           <Box>{children}</Box>
         </Providers>
