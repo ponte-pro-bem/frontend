@@ -1,5 +1,5 @@
 import { Flex } from "@chakra-ui/react";
-import { LogoHero } from "~/app/illustrations/hero";
+import { LogoHero } from "../../app/illustrations/hero";
 
 export default function HomeIllustration(){
     return (

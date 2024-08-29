@@ -1,12 +1,10 @@
-import { Box, Center, Flex, HStack, Spinner, Text } from "@chakra-ui/react";
-import useQueryInstitutions, {
-  Institution,
-} from "~/app/hooks/useQueryInstitutions";
+import { Flex, HStack } from "@chakra-ui/react";
+
+import useQueryInstitutions, { Institution } from "../../app/hooks/useQueryInstitutions";
 import Card from "../Card";
 import EntitySectionHeader from "../EntitySectionHeader";
-import { InstitutionSectionProps } from "./types";
-import LoadingPage from "../LoadingPage/LoadingPage";
 import { HomeSectionListPlaceholder } from "../HomeSectionListPlaceholder";
+import { InstitutionSectionProps } from "./types";
 
 export default function InstitutionHomeSection({
   onSelectInstitution,

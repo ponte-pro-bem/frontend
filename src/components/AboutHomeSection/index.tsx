@@ -1,6 +1,5 @@
-import { Box, Flex, HStack, Stack, Text, VStack } from "@chakra-ui/react";
-import Image from "next/image";
-import Elipse from "~/app/illustrations/elipse";
+import { Box, Flex, HStack, Image, Stack, Text, VStack } from "@chakra-ui/react";
+import Elipse from "../../app/illustrations/elipse";
 
 export default function AboutHomeSection(){
     return (

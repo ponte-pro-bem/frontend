@@ -33,4 +33,6 @@ export const HomeSectionListPlaceholder = ({
       </Center>
     );
   }
+
+  return null
 };
