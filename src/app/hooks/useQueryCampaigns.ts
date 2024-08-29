@@ -18,7 +18,7 @@ export default function useQueryCampaigns() {
   const query = useQuery({
     queryKey: [QUERY_KEYS.campaigns],
     queryFn: async () => {
-      const { data } = await axios.get<Campaign[]>(`${process.env.NEXT_PUBLIC_APP_URL}/campaigns`)
+      const { data } = await axios.get<Campaign[]>(`http://app.pontedobem.org/campaigns`)
       
       return data
     },
