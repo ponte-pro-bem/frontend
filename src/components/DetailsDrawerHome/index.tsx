@@ -8,19 +8,20 @@ import { useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
 export default function DetailsDrawerHome({ item, isOpen, onClose }: DetailsDrawerProps){
+  
+  const [copied, setCopied] = useState(false);
+  
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    
+    setTimeout(() => {
+      setCopied(false);
+    }, 2000);
+  };
+  
     if (!item) return null;
-  
-    const [copied, setCopied] = useState(false);
-  
-    const copyToClipboard = (text: string) => {
-      navigator.clipboard.writeText(text);
-      setCopied(true);
-  
-      setTimeout(() => {
-        setCopied(false);
-      }, 2000);
-    };
-  
+    
     return (
       <Drawer isOpen={isOpen} size={"xl"} placement="right" onClose={onClose}>
         <DrawerOverlay />

@@ -1,13 +1,7 @@
 {
-  "name": "frontend-ponte-pro-bem",
+  "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",
     "@chakra-ui/react": "^2.8.2",
@@ -19,14 +13,20 @@
     "@netlify/plugin-nextjs": "^5.7.0",
     "@nozbe/microfuzz": "^1.0.0",
     "@tanstack/react-query": "^5.37.1",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
     "@types/axios": "^0.14.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.106",
+    "@types/react": "^18.3.4",
+    "@types/react-dom": "^18.3.0",
     "axios": "^1.7.2",
     "dayjs": "^1.11.11",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-react": "^7.34.1",
     "framer-motion": "^11.2.6",
     "fuzzysort": "^3.0.1",
-    "next": "14.2.3",
     "qrcode.react": "^3.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -34,11 +34,11 @@
     "react-icons": "^5.2.1",
     "react-intersection-observer": "^9.10.2",
     "react-responsive-carousel": "^3.2.23",
+    "react-router-dom": "^6.26.1",
+    "react-scripts": "5.0.1",
+    "typescript": "^4.9.5",
     "typescript-eslint": "^7.10.0",
-    "unsplash-js": "^7.0.19",
-    "yup": "^1.4.0",
-    "zod": "link:@hookform/resolvers/zod",
-    "zustand": "^4.5.2"
+    "web-vitals": "^2.1.4"
   },
   "devDependencies": {
     "@tanstack/eslint-plugin-query": "^5.35.6",
@@ -55,7 +55,28 @@
     "faker": "^6.6.6",
     "typescript": "^5.4.5"
   },
-  "resolutions": {
-    "eslint-plugin-import": "2.26.0"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

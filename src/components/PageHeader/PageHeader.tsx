@@ -1,8 +1,7 @@
 "use client";
 import { Button, Flex, HStack, Spacer } from "@chakra-ui/react";
-import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import Logo from '~/app/logo';
+import Logo from "../../app/logo";
 export default function PageHeader() {
   const [activeSection, setActiveSection] = useState("#inicio");
 
@@ -24,10 +23,10 @@ export default function PageHeader() {
       link: "#contato",
     },
   ];
-  const route = useRouter();
+  // const route = useRouter();
   const handleClick = (link: string) => {
-    route.push(link);
-    setActiveSection(link);
+    // route.push(link);
+    // setActiveSection(link);
   };
 
 

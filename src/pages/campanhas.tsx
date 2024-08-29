@@ -12,18 +12,21 @@ import {
   useDisclosure
 } from "@chakra-ui/react";
 import fuzzysort from 'fuzzysort';
-import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import { FaChevronLeft } from "react-icons/fa";
-import useQueryCampaigns, { Campaign } from "~/app/hooks/useQueryCampaigns";
-import Elipse from "~/app/illustrations/elipse";
-import RootLayout from "~/app/layout";
-import Card from "~/components/Card";
-import DetailsDrawerHome from "~/components/DetailsDrawerHome";
+import Card from "../components/Card";
+import useQueryCampaigns, { Campaign } from "../app/hooks/useQueryCampaigns";
+import DetailsDrawerHome from "../components/DetailsDrawerHome";
+import Elipse from "../app/illustrations/elipse";
+// import useQueryCampaigns, { Campaign } from "~/app/hooks/useQueryCampaigns";
+// import Elipse from "~/app/illustrations/elipse";
+// import RootLayout from "~/app/layout";
+// import Card from "~/components/Card";
+// import DetailsDrawerHome from "~/components/DetailsDrawerHome";
 
 export const CampaignsLis = () => {
   const { data: campaigns, isLoading: isLoadingCampaigns } = useQueryCampaigns();
-  const { back } = useRouter();
+  // const { back } = useRouter();
   const [searchText, setSearchText] = useState("");
 
   const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>(null);
@@ -63,7 +66,7 @@ export const CampaignsLis = () => {
             ml={-3}
             leftIcon={<FaChevronLeft />}
             aria-label="Voltar"
-            onClick={back}
+            onClick={() => {}}
           >
 
           <Text fontSize="2xl" fontWeight={700}>
@@ -113,12 +116,12 @@ export const CampaignsLis = () => {
   );
 };
 
-const Campaigns = () => {
-  return (
-    <RootLayout>
-      <CampaignsLis />
-    </RootLayout>
-  );
-};
+// const Campaigns = () => {
+//   return (
+//     <RootLayout>
+//       <CampaignsLis />
+//     </RootLayout>
+//   );
+// };
 
-export default Campaigns;
+export default CampaignsLis;

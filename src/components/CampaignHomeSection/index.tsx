@@ -1,9 +1,9 @@
 import { Flex, HStack, Text } from "@chakra-ui/react";
-import useQueryCampaigns, { Campaign } from "~/app/hooks/useQueryCampaigns";
 import Card from "../Card";
 import EntitySectionHeader from "../EntitySectionHeader";
 import { CampaignHomeSectionProps } from "./types";
 import { HomeSectionListPlaceholder } from "../HomeSectionListPlaceholder";
+import useQueryCampaigns, { Campaign } from "../../app/hooks/useQueryCampaigns";
 
 export default function CampaignHomeSection({
   onSelectCampaign,

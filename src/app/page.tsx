@@ -7,15 +7,23 @@ import {
   useBreakpointValue,
   useMediaQuery,
 } from "@chakra-ui/react";
-import AboutHomeSection from "~/components/AboutHomeSection";
-import CampaignHomeSection from "~/components/CampaignHomeSection";
-import ContactHomeSection from "~/components/ContactHomeSection";
-import DetailsDrawerHome from "~/components/DetailsDrawerHome";
-import FooterHome from "~/components/FooterHome";
-import InstitutionHomeSection from "~/components/InstitutionsHomeSection";
-import PageHeader from "~/components/PageHeader/PageHeader";
-import HomeIllustration from "~/components/PresentationHomeSection";
+// import AboutHomeSection from "~/components/AboutHomeSection";
+// import CampaignHomeSection from "~/components/CampaignHomeSection";
+// import ContactHomeSection from "~/components/ContactHomeSection";
+// import DetailsDrawerHome from "~/components/DetailsDrawerHome";
+// import FooterHome from "~/components/FooterHome";
+// import InstitutionHomeSection from "~/components/InstitutionsHomeSection";
+// import PageHeader from "~/components/PageHeader/PageHeader";
+// import HomeIllustration from "~/components/PresentationHomeSection";
 import useHomeController, { ENTITY } from "./page.controller";
+import PageHeader from "../components/PageHeader/PageHeader";
+import HomeIllustration from "../components/PresentationHomeSection";
+import AboutHomeSection from "../components/AboutHomeSection";
+import InstitutionHomeSection from "../components/InstitutionsHomeSection";
+import CampaignHomeSection from "../components/CampaignHomeSection";
+import FooterHome from "../components/FooterHome";
+import ContactHomeSection from "../components/ContactHomeSection";
+import DetailsDrawerHome from "../components/DetailsDrawerHome";
 
 export default function Home() {
   const {
@@ -26,23 +34,21 @@ export default function Home() {
     selectedInstitution,
   } = useHomeController();
 
-  if (typeof window !== "undefined") {
-    const [isDesktop] = useMediaQuery("(min-width: 800px)", {
-      fallback: false,
-      ssr: false,
-    });
+  const [isDesktop] = useMediaQuery("(min-width: 800px)", {
+    fallback: false,
+    ssr: false,
+  });
 
-    if (!isDesktop) {
-      return (
-          <Center flexDir={"column"} h="100vh">
-            <Text textAlign={"center"}>
-              No momento não estamos disponíveis para dispositivos móveis
-            </Text>
-            <br />
-            <Text>Acesse ao site utilizando um computador</Text>
-          </Center>
-      );
-    }
+  if (!isDesktop) {
+    return (
+      <Center flexDir={"column"} h="100vh">
+        <Text textAlign={"center"}>
+          No momento não estamos disponíveis para dispositivos móveis
+        </Text>
+        <br />
+        <Text>Acesse ao site utilizando um computador</Text>
+      </Center>
+    );
   }
 
   return (

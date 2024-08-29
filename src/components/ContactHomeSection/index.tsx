@@ -1,5 +1,4 @@
-import { Flex, HStack, IconButton, Link, Stack, Text, Tooltip } from "@chakra-ui/react";
-import Image from "next/image";
+import { Flex, HStack, IconButton, Image, Link, Stack, Text, Tooltip } from "@chakra-ui/react";
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 

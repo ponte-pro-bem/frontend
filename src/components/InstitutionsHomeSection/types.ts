@@ -1,4 +1,4 @@
-import { Institution } from "~/app/hooks/useQueryInstitutions";
+import { Institution } from "../../app/hooks/useQueryInstitutions";
 
 export interface InstitutionSectionProps {
   onSelectInstitution: (

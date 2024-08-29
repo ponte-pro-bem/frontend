@@ -13,19 +13,24 @@ import {
     useDisclosure
 } from "@chakra-ui/react";
 import fuzzysort from 'fuzzysort';
-import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import { FaChevronLeft } from "react-icons/fa";
-import { Campaign } from "~/app/hooks/useQueryCampaigns";
-import useQueryInstitutions, { Institution } from "~/app/hooks/useQueryInstitutions";
-import Elipse from "~/app/illustrations/elipse";
-import RootLayout from "~/app/layout";
-import Card from "~/components/Card";
-import DetailsDrawerHome from "~/components/DetailsDrawerHome";
+import useQueryInstitutions, { Institution } from "../app/hooks/useQueryInstitutions";
+import DetailsDrawerHome from "../components/DetailsDrawerHome";
+import Elipse from "../app/illustrations/elipse";
+import Card from "../components/Card";
+import { Campaign } from "../app/hooks/useQueryCampaigns";
+// import { Campaign } from "~/app/hooks/useQueryCampaigns";
+// import useQueryInstitutions, { Institution } from "~/app/hooks/useQueryInstitutions";
+// import Elipse from "~/app/illustrations/elipse";
+// import RootLayout from "~/app/layout";
+// import Providers from "~/app/providers";
+// import Card from "~/components/Card";
+// import DetailsDrawerHome from "~/components/DetailsDrawerHome";
 
 export const InstitutionsPage = () => {
   const { data: institutions, isLoading: isLoadingInstitutions } = useQueryInstitutions();
-  const { back } = useRouter();
+  // const { back } = useRouter();
   const [searchText, setSearchText] = useState("");
 
   const [selectedInstitution, setSelectedInstitution] = useState<Institution | null>(null);
@@ -65,7 +70,7 @@ export const InstitutionsPage = () => {
             ml={-3}
             leftIcon={<FaChevronLeft />}
             aria-label="Voltar"
-            onClick={back}
+            onClick={() => {}}
           >
 
           <Text fontSize="2xl" fontWeight={700}>
@@ -118,12 +123,6 @@ export const InstitutionsPage = () => {
   );
 };
 
-const Institutions = () => {
-  return (
-    <RootLayout>
-      <InstitutionsPage />
-    </RootLayout>
-  );
-};
 
-export default Institutions;
+
+export default InstitutionsPage;

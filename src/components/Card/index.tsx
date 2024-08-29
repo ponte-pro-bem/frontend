@@ -1,14 +1,14 @@
 import {
     Card as ChakraCard,
     HStack,
+    Image,
     Stack,
     Text,
     VStack,
 } from "@chakra-ui/react";
-import Image from "next/image";
 import { CardProps } from "./types";
-import { Institution } from "~/app/hooks/useQueryInstitutions";
-import { Campaign } from "~/app/hooks/useQueryCampaigns";
+import { Institution } from "../../app/hooks/useQueryInstitutions";
+import { Campaign } from "../../app/hooks/useQueryCampaigns";
 
 export default function Card<T extends Institution & Partial<Campaign>>({ item,  onSelectItem }: CardProps<T>) {
   return (
