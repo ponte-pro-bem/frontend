@@ -1,9 +1,10 @@
 "use client";
-import logo from '../../public/logo.png';
+import logo from './logo.png';
 import { Box, Button, Flex, HStack, Spacer } from "@chakra-ui/react";
 import Image from 'next/image';
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Logo from '~/app/logo';
 export default function PageHeader() {
   const [activeSection, setActiveSection] = useState("#inicio");
 
@@ -58,7 +59,7 @@ export default function PageHeader() {
           bg: "transparent",
         }}
       >
-        <Image src={logo} alt="Logo" width={140} height={140} />
+        <Logo />
       </Button>
       <Spacer></Spacer>
       <HStack>
