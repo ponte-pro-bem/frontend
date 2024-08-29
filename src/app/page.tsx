@@ -34,7 +34,6 @@ export default function Home() {
 
     if (!isDesktop) {
       return (
-        <main>
           <Center flexDir={"column"} h="100vh">
             <Text textAlign={"center"}>
               No momento não estamos disponíveis para dispositivos móveis
@@ -42,7 +41,6 @@ export default function Home() {
             <br />
             <Text>Acesse ao site utilizando um computador</Text>
           </Center>
-        </main>
       );
     }
   }
