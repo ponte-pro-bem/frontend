@@ -27,7 +27,7 @@ export default function Card<T extends Institution & Partial<Campaign>>({ item, 
         height={300}
         width={400}
         alt="123"
-        src={"https://placehold.jp/400x300.png"}
+        src={item.images[0] ?? "https://placehold.jp/400x300.png"}
       />
       <VStack
         alignItems={"flex-start"}

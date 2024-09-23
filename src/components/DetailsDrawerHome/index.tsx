@@ -41,33 +41,22 @@ export default function DetailsDrawerHome({ item, isOpen, onClose }: DetailsDraw
                 // @ts-ignore
                 renderThumbs={() => null}
               >
-                <div>
-                  <img src="https://placehold.jp/150x150.png" />
-                </div>
-                <div>
-                  <img src="https://placehold.jp/250x250.png" />
-                </div>
-                <div>
-                  <img src="https://placehold.jp/350x350.png" />
-                </div>
+                {
+                    item.images?.map(image => {
+                      return (
+                        <div>
+                          <img src={image} />
+                        </div>
+                      )
+                    })
+                }
               </Carousel>
             </Flex>
   
             {/* <Text>{item.description}</Text> */}
             <Box px={6} py={10}>
               <Text fontSize={"lg"}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac
-                urna a nunc placerat varius. Nullam ultricies felis nec arcu
-                dictum, eget fringilla turpis egestas. Aenean quis libero sit amet
-                libero vehicula congue sit amet a felis. Donec ac velit felis.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac
-                urna a nunc placerat varius. Nullam ultricies felis nec arcu
-                dictum, eget fringilla turpis egestas. Aenean quis libero sit amet
-              </Text>
-              <Text fontSize={"lg"} mt={5}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac
-                urna a nunc placerat varius. Nullam ultricies felis nec arcu
-                dictum, eget fringilla turpis egestas.
+                {item.description}
               </Text>
             </Box>
   
