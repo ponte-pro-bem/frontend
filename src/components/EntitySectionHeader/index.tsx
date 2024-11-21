@@ -15,7 +15,12 @@ export default function EntitySectionHeader({
         <Text fontSize={"xl"}>{subtitle}</Text>
       </VStack>
       <Link href={hrefViewAllPage}>
-        <Button fontWeight={400} variant="ghost" fontSize={"lg"}>
+        <Button
+          fontWeight={700}
+          variant="ghost"
+          fontSize={"xl"}
+          color="brand.green"
+        >
           Ver todas
         </Button>
       </Link>

@@ -1,6 +1,8 @@
 import { Flex, HStack } from "@chakra-ui/react";
 
-import useQueryInstitutions, { Institution } from "../../app/hooks/useQueryInstitutions";
+import useQueryInstitutions, {
+  Institution,
+} from "../../app/hooks/useQueryInstitutions";
 import Card from "../Card";
 import EntitySectionHeader from "../EntitySectionHeader";
 import { HomeSectionListPlaceholder } from "../HomeSectionListPlaceholder";
@@ -9,8 +11,12 @@ import { InstitutionSectionProps } from "./types";
 export default function InstitutionHomeSection({
   onSelectInstitution,
 }: InstitutionSectionProps) {
-  const { data: institutions, isLoading: isLoadingInstitutions, error, ...rest } =
-    useQueryInstitutions();
+  const {
+    data: institutions,
+    isLoading: isLoadingInstitutions,
+    error,
+    ...rest
+  } = useQueryInstitutions();
 
   return (
     <div id="organizacoes">
@@ -39,11 +45,14 @@ export default function InstitutionHomeSection({
             },
           }}
         >
-          <HomeSectionListPlaceholder 
+          <HomeSectionListPlaceholder
             isLoading={isLoadingInstitutions}
+            isEmpty={institutions?.length === 0}
             error={!!error}
           />
-          {!isLoadingInstitutions && !error && institutions && (
+          {!isLoadingInstitutions &&
+            !error &&
+            institutions &&
             institutions?.map((institution) => {
               return (
                 <Card<Institution>
@@ -54,8 +63,7 @@ export default function InstitutionHomeSection({
                   }}
                 />
               );
-            })
-          )}
+            })}
         </HStack>
       </Flex>
     </div>

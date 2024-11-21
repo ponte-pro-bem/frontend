@@ -44,20 +44,22 @@ export default function CampaignHomeSection({
           <HomeSectionListPlaceholder
             isLoading={isLoadingCampaigns}
             error={!!error}
+            isEmpty={campaigns?.length === 0}
           />
-          {!isLoadingCampaigns && !error && campaigns && (
+          {!isLoadingCampaigns &&
+            !error &&
+            campaigns &&
             campaigns?.map((campaign) => {
               return (
                 <Card<Campaign>
-                  key={campaign.id}
+                  key={campaign.id || campaign.name}
                   item={campaign}
                   onSelectItem={(campaignId) => {
                     onSelectCampaign(campaigns, campaignId);
                   }}
                 />
               );
-            })
-          )}
+            })}
         </HStack>
       </Flex>
     </div>

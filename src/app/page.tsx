@@ -24,7 +24,14 @@ import CampaignHomeSection from "../components/CampaignHomeSection";
 import FooterHome from "../components/FooterHome";
 import ContactHomeSection from "../components/ContactHomeSection";
 import DetailsDrawerHome from "../components/DetailsDrawerHome";
-import { Link, Button, Element, Events, animateScroll as scroll, scrollSpy } from 'react-scroll';
+import {
+  Link,
+  Button,
+  Element,
+  Events,
+  animateScroll as scroll,
+  scrollSpy,
+} from "react-scroll";
 export default function Home() {
   const {
     onSelectItem,
@@ -58,22 +65,20 @@ export default function Home() {
 
         <HomeIllustration />
 
-<Element name='sobre-o-projeto'>
-
-        <AboutHomeSection />
-</Element>
+        <Element name="sobre-o-projeto">
+          <AboutHomeSection />
+        </Element>
         {/* sobre-o-projeto
 
 campanhas
 contato */}
-<Element name='organizacoes'>
-
-        <InstitutionHomeSection
-          onSelectInstitution={(institutions, institutionId) => {
-            onSelectItem(institutions, institutionId, ENTITY.INSTITUTIONS);
-          }}
+        <Element name="organizacoes">
+          <InstitutionHomeSection
+            onSelectInstitution={(institutions, institutionId) => {
+              onSelectItem(institutions, institutionId, ENTITY.INSTITUTIONS);
+            }}
           />
-          </Element>
+        </Element>
 
         <CampaignHomeSection
           onSelectCampaign={(campaigns, campaignId) => {

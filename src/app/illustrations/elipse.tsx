@@ -2,7 +2,7 @@ import { Icon } from "@chakra-ui/react";
 
 export default function Elipse() {
   return (
-    <Icon viewBox="0 0 300.6 200.1" w="300" h="300">
+    <Icon viewBox="0 0 300.6 200.1" w="300" h="300" transform="rotate(90deg)">
       <svg
         width="239"
         height="172"

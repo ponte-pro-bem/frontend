@@ -1,24 +1,31 @@
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
-import { QUERY_KEYS } from './query.constants';
-import { staticInstitutions } from './static/institutions';
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { QUERY_KEYS } from "./query.constants";
+import { staticInstitutions } from "./static/institutions";
 
 export interface Institution {
-  id: string
-  name: string
-  description: string
-  images: string[]
-  pixQRCodeRaw: string
-  createdAt: string
+  id: string;
+  name: string;
+  description: string;
+  images: { key: string, url: string, id: string }[];
+  pixQRCodeRaw: string;
+  createdAt: string;
+  tags: {
+    id: string;
+    name: string;
+    icon?: string;
+    iconLibrary?: string;
+  }[];
 }
-
 export default function useQueryInstitutions() {
   const query = useQuery({
     queryKey: [QUERY_KEYS.institutions],
     queryFn: async () => {
-      // const { data } = await axios.get<Institution[]>(`https://app.pontedobem.org/institutions`)
-      const data: Institution[] = staticInstitutions
-      return data
+      const { data } = await axios.get<Institution[]>(
+        `http://localhost:8080/institutions`
+      );
+      // const data: Institution[] = staticInstitutions;
+      return data;
     },
   });
 
