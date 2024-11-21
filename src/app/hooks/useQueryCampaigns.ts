@@ -25,7 +25,7 @@ export default function useQueryCampaigns() {
     queryKey: [QUERY_KEYS.campaigns],
     queryFn: async () => {
       const { data } = await axios.get<Campaign[]>(
-        `http://localhost:8080/campaigns`
+        `https://app.pontedobem.org/campaigns`
       );
 
       console.log(data);

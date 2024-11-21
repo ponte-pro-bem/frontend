@@ -22,7 +22,7 @@ export default function useQueryInstitutions() {
     queryKey: [QUERY_KEYS.institutions],
     queryFn: async () => {
       const { data } = await axios.get<Institution[]>(
-        `http://localhost:8080/institutions`
+        `https://app.pontedobem.org/institutions`
       );
       // const data: Institution[] = staticInstitutions;
       return data;
