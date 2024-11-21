@@ -44,12 +44,12 @@ export const HomeSectionListPlaceholder = ({
       <Center h={580} minW={"100%"}>
         <VStack spacing={6}>
           <Icon as={BiGhost} fontSize="4xl" />
-          <Text fontSize={"xl"} fontWeight="bold">
+          <Text fontSize={"xl"}>
             {" "}
-            Sinto muito, no momento nao temos resultados.
+            Sinto muito, no momento não temos resultados.
           </Text>
         </VStack>
-      </Center>
+      </Center >
     );
   }
   return null;

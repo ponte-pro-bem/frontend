@@ -3,14 +3,17 @@
 import {
   Box,
   Button,
+  Center,
   Flex,
   Grid,
   GridItem,
   HStack,
+  Icon,
   Input,
   SimpleGrid,
   Text,
   useDisclosure,
+  VStack,
   Wrap,
   WrapItem,
 } from "@chakra-ui/react";
@@ -25,6 +28,7 @@ import Elipse from "../app/illustrations/elipse";
 import Card, { iconLibraries } from "../components/Card";
 import { Campaign } from "../app/hooks/useQueryCampaigns";
 import { useNavigate } from "react-router";
+import { BiGhost } from "react-icons/bi";
 
 const FilterTags = ({ availableFilterTag, setSearchText }: any) => {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
@@ -170,6 +174,9 @@ export const InstitutionsPage = () => {
     );
   };
 
+  console.log(filteredInstitutions);
+
+
   return (
     <Flex position="relative" overflow={"hidden"}>
       <Box position="absolute" zIndex={1} top={0} right={-40}>
@@ -192,7 +199,7 @@ export const InstitutionsPage = () => {
           </Button>
         </HStack>
         <Text mt={6} fontSize="5xl" fontWeight={700}>
-          Organizaçoes
+          Organizações
         </Text>
         <Input
           bg="white"
@@ -202,7 +209,7 @@ export const InstitutionsPage = () => {
             base: "100%",
             "2xl": "50%",
           }}
-          placeholder="Pesquise por organizaçoes"
+          placeholder="Pesquise por organizações"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
@@ -210,13 +217,19 @@ export const InstitutionsPage = () => {
           <FilterTags availableFilterTag={availableFilterTag} />
         </Box>
         {isLoadingInstitutions ? (
-          <Flex width="100%" height="100%" justify="center" align="center">
+          <Flex justify="center" align="center">
             <Text fontSize={20}>Buscando organizações...</Text>
           </Flex>
         ) : filteredInstitutions?.length === 0 ? (
-          <Flex width="100%" height="100%" justify="center" align="center">
-            <Text fontSize={20}>Ops! Nenhuma organização foi encontrada.</Text>
-          </Flex>
+          <Center h={580} minW={"100%"}>
+            <VStack spacing={6}>
+              <Icon as={BiGhost} fontSize="4xl" />
+              <Text fontSize={"xl"}>
+                {" "}
+                Sinto muito, no momento não temos resultados.
+              </Text>
+            </VStack>
+          </Center>
         ) : (
           <SimpleGrid
             columns={{ base: 1, md: 2, xl: 3, "2xl": 4 }}

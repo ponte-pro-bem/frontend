@@ -212,11 +212,11 @@ export default function DetailsDrawerHome({
                     color="brand.green"
                   ></Icon>
                   <Text fontSize={"lg"} fontWeight={700} color="brand.green">
-                    Nos ajude a registrar as doaçoes feitas pela Ponte do Bem.
+                    Nos ajude a registrar as doações feitas pela Ponte do Bem.
                   </Text>
                 </HStack>
                 <Text fontSize={"xs"} textAlign="left" py={5}>
-                  Preencha seus dados e qual o valor de sua doaçao para apoiar{" "}
+                  Preencha seus dados e qual o valor de sua doação para apoiar{" "}
                   <b>{item.name}</b>
                 </Text>
                 <VStack spacing={4}>
@@ -274,7 +274,7 @@ export default function DetailsDrawerHome({
                       placeholder="Valor da doação"
                       step="0.01"
                       {...register("amount", {
-                        required: "Voce deve adicionar o valor da doacao",
+                        required: "Voce deve adicionar o valor da doação",
                       })}
                       w="100%"
                       borderWidth={2}
@@ -298,8 +298,8 @@ export default function DetailsDrawerHome({
                     Confirmar Doação
                   </Button>
                   <Text fontSize={"xs"}>
-                    Toda doaçao é enviada diretamente a campanha ou instituiçao,
-                    nao possuimos nenhum controle do valor contribuido.
+                    Toda doação é enviada diretamente a campanha ou instituição,
+                    não possuímos nenhum controle do valor contribuído.
                   </Text>
                 </VStack>
               </Box>
