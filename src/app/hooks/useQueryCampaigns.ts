@@ -28,7 +28,6 @@ export default function useQueryCampaigns() {
         `https://app.pontedobem.org/campaigns`
       );
 
-      console.log(data);
 
       return data;
     },

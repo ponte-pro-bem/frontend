@@ -11,6 +11,7 @@ import {
   Flex,
   HStack,
   Icon,
+  Image,
   Input,
   Stack,
   Text,
@@ -130,7 +131,9 @@ export default function DetailsDrawerHome({
               {item.images?.map((image) => {
                 return (
                   <Stack ml={3} key={image.id}>
-                    <img
+                    <Image
+                      maxH={450}
+                      objectFit={'cover'}
                       src={image.url}
                       style={{ borderRadius: 24, marginLeft: 10 }}
                       alt={image.key}

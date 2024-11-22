@@ -7,6 +7,8 @@ import {
   Stack,
   Text,
   VStack,
+  Wrap,
+  WrapItem,
 } from "@chakra-ui/react";
 import { CardProps } from "./types";
 import { Institution } from "../../app/hooks/useQueryInstitutions";
@@ -76,27 +78,30 @@ export default function Card<T extends Institution & Partial<Campaign>>({
               whiteSpace="nowrap"
 
             >
-              {item?.tags?.map((tag) => {
-                const Element =
-                  tag?.iconLibrary && tag?.icon
-                    ? iconLibraries[tag?.iconLibrary][tag.icon]
-                    : null;
+              <Wrap spacing={2} justify="start">
+                {item?.tags?.map((tag) => {
+                  const Element =
+                    tag?.iconLibrary && tag?.icon
+                      ? iconLibraries[tag?.iconLibrary][tag.icon]
+                      : null;
 
-                return (
-                  <HStack
-                    key={tag?.id}
-                    alignItems={"center"}
-                    justifyContent={"center"}
+                  return (
+                    <WrapItem key={tag.id}>
+                      <HStack
+                        key={tag?.id}
+                        alignItems={"center"}
+                        justifyContent={"center"}
+                      >
+                        {Element && <Element size={16} color={"#98BA80"} />}
+                        <Text mr={4} fontSize={"sm"} color={"brand.green"} fontWeight={500}>
+                          {tag?.name}
+                        </Text>
+                      </HStack>
+                    </WrapItem>
+                  );
+                })}
 
-                  // pr={3}
-                  >
-                    {Element && <Element size={16} color={"#98BA80"} />}
-                    <Text mr={4} fontSize={"sm"} color={"brand.green"} fontWeight={500}>
-                      {tag?.name}
-                    </Text>
-                  </HStack>
-                );
-              })}
+              </Wrap>
             </Box>
             {/* Overlay com efeito de blur no final do HStack */}
             <Box
@@ -117,7 +122,7 @@ export default function Card<T extends Institution & Partial<Campaign>>({
           )}
           <Box
             position="relative"
-            width="90%"
+            maxW="360px"
             maxHeight="130px" // Controla a altura do texto antes do efeito de desfoque
             overflow="hidden"
             fontSize={14}

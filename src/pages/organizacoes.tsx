@@ -30,54 +30,54 @@ import { Campaign } from "../app/hooks/useQueryCampaigns";
 import { useNavigate } from "react-router";
 import { BiGhost } from "react-icons/bi";
 
-const FilterTags = ({ availableFilterTag, setSearchText }: any) => {
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  if (!availableFilterTag) return null;
+// const FilterTags = ({ availableFilterTag, setSearchText }: any) => {
+//   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+//   if (!availableFilterTag) return null;
 
-  const handleTagClick = (tagName: string) => {
-    // Verifica se a tag já está selecionada
-    if (selectedTags.includes(tagName)) {
-      // Remove a tag se já estiver selecionada
-      const updatedTags = selectedTags.filter((tag) => tag !== tagName);
-      setSelectedTags(updatedTags);
-      setSearchText(updatedTags.join(", "));
-    } else {
-      // Adiciona a tag ao array de selecionadas
-      const updatedTags = [...selectedTags, tagName];
-      setSelectedTags(updatedTags);
-      setSearchText(updatedTags.join(", "));
-    }
-  };
+//   const handleTagClick = (tagName: string) => {
+//     // Verifica se a tag já está selecionada
+//     if (selectedTags.includes(tagName)) {
+//       // Remove a tag se já estiver selecionada
+//       const updatedTags = selectedTags.filter((tag) => tag !== tagName);
+//       setSelectedTags(updatedTags);
+//       setSearchText(updatedTags.join(", "));
+//     } else {
+//       // Adiciona a tag ao array de selecionadas
+//       const updatedTags = [...selectedTags, tagName];
+//       setSelectedTags(updatedTags);
+//       setSearchText(updatedTags.join(", "));
+//     }
+//   };
 
-  const renderTagButton = (tag: any) => {
-    const Icon =
-      tag?.iconLibrary && tag.icon
-        ? iconLibraries[tag.iconLibrary][tag.icon]
-        : null;
+//   const renderTagButton = (tag: any) => {
+//     const Icon =
+//       tag?.iconLibrary && tag.icon
+//         ? iconLibraries[tag.iconLibrary][tag.icon]
+//         : null;
 
-    const isSelected = selectedTags.includes(tag?.name);
+//     const isSelected = selectedTags.includes(tag?.name);
 
-    return (
-      <Button
-        key={tag?.id || tag?.name}
-        px={3}
-        variant="ghost"
-        _hover={{
-          color: "brand.green",
-          transition: "all 0.3s ease-in-out",
-        }}
-        bg={isSelected ? "brand.green" : "transparent"}
-        color={isSelected ? "white" : "inherit"}
-        onClick={() => handleTagClick(tag?.name)}
-        leftIcon={Icon ? <Icon /> : undefined}
-      >
-        {tag?.name}
-      </Button>
-    );
-  };
+//     return (
+//       <Button
+//         key={tag?.id || tag?.name}
+//         px={3}
+//         variant="ghost"
+//         _hover={{
+//           color: "brand.green",
+//           transition: "all 0.3s ease-in-out",
+//         }}
+//         bg={isSelected ? "brand.green" : "transparent"}
+//         color={isSelected ? "white" : "inherit"}
+//         onClick={() => handleTagClick(tag?.name)}
+//         leftIcon={Icon ? <Icon /> : undefined}
+//       >
+//         {tag?.name}
+//       </Button>
+//     );
+//   };
 
-  return <HStack spacing={4}>{availableFilterTag.map(renderTagButton)}</HStack>;
-};
+//   return <HStack spacing={4}>{availableFilterTag.map(renderTagButton)}</HStack>;
+// };
 export const InstitutionsPage = () => {
   const { data: institutions, isLoading: isLoadingInstitutions } =
     useQueryInstitutions();
@@ -122,7 +122,13 @@ export const InstitutionsPage = () => {
 
   useEffect(() => {
     if (!institutions) return;
-    setAvailableFilterTag(institutions.flatMap((item) => item.tags));
+
+    const uniqueTags = Array.from(
+      new Map(
+        institutions.flatMap((item) => item.tags).map(tag => [tag.name, tag])
+      ).values()
+    );
+    setAvailableFilterTag(uniqueTags);
   }, [institutions]);
   const FilterTags = ({ availableFilterTag }: any) => {
     if (!availableFilterTag) return null;
@@ -174,7 +180,6 @@ export const InstitutionsPage = () => {
     );
   };
 
-  console.log(filteredInstitutions);
 
 
   return (
