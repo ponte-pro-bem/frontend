@@ -187,7 +187,7 @@ export const InstitutionsPage = () => {
       <Box position="absolute" zIndex={1} top={0} right={-40}>
         <Elipse />
       </Box>
-      <Box px={24} py={12} zIndex={1} w="100%">
+      <Box px={{ base: 6, md: 12, lg: 24 }} py={12} zIndex={1} w="100%">
         <HStack spacing={6}>
           <Button
             fontSize="2xl"
@@ -229,7 +229,7 @@ export const InstitutionsPage = () => {
           <Center h={580} minW={"100%"}>
             <VStack spacing={6}>
               <Icon as={BiGhost} fontSize="4xl" />
-              <Text fontSize={"xl"}>
+              <Text fontSize={"xl"} textAlign={'center'}>
                 {" "}
                 Sinto muito, no momento não temos resultados.
               </Text>

@@ -185,7 +185,7 @@ export const CampaignsLis = () => {
           <Center h={580} minW={"100%"}>
             <VStack spacing={6}>
               <Icon as={BiGhost} fontSize="4xl" />
-              <Text fontSize={"xl"}>
+              <Text fontSize={"xl"} textAlign={'center'}>
                 {" "}
                 Sinto muito, no momento não temos resultados.
               </Text>

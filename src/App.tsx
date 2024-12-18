@@ -16,17 +16,17 @@ function App() {
     ssr: false,
   });
 
-  if (!isDesktop) {
-    return (
-      <Center flexDir={"column"} h="100vh">
-        <Text textAlign={"center"}>
-          No momento não estamos disponíveis para dispositivos móveis
-        </Text>
-        <br />
-        <Text>Acesse ao site utilizando um computador</Text>
-      </Center>
-    );
-  }
+  // if (!isDesktop) {
+  //   return (
+  //     <Center flexDir={"column"} h="100vh">
+  //       <Text textAlign={"center"}>
+  //         No momento não estamos disponíveis para dispositivos móveis
+  //       </Text>
+  //       <br />
+  //       <Text>Acesse ao site utilizando um computador</Text>
+  //     </Center>
+  //   );
+  // }
 
   return (
     <div className="App">

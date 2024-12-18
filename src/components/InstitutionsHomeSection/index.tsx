@@ -1,4 +1,9 @@
-import { Flex, HStack } from "@chakra-ui/react";
+import {
+  Flex,
+  HStack,
+  Box,
+  useBreakpointValue,
+} from "@chakra-ui/react";
 
 import useQueryInstitutions, {
   Institution,
@@ -15,46 +20,52 @@ export default function InstitutionHomeSection({
     data: institutions,
     isLoading: isLoadingInstitutions,
     error,
-    ...rest
   } = useQueryInstitutions();
+
+  const isDesktop = useBreakpointValue({ base: false, md: true });
 
   return (
     <div id="organizacoes">
-      <Flex h={"calc(100vh)"} flexDir={"column"} mx={12} mt={24}>
+      <Flex
+        h="calc(100vh)"
+        flexDir="column"
+        mx={{ base: 4, md: 12 }}
+        mt={{ base: 12, md: 24 }}
+      >
         <EntitySectionHeader
           title="Organizações"
           subtitle="Colabore com nossas organizações parceiras"
-          hrefViewAllPage={"/organizacoes"}
+          hrefViewAllPage="/organizacoes"
         />
 
-        <HStack
-          spacing={6}
-          pt={6}
-          w="92vw"
-          overflowX={"scroll"}
-          overflowY={"hidden"}
-          scrollBehavior={"smooth"}
-          css={{
-            "&::-webkit-scrollbar": {
-              width: "16px",
-              borderRadius: "8px",
-              backgroundColor: `rgba(0, 0, 0, 0.05)`,
-            },
-            "&::-webkit-scrollbar-thumb": {
-              backgroundColor: `rgba(0, 0, 0, 0.05)`,
-            },
-          }}
-        >
-          <HomeSectionListPlaceholder
-            isLoading={isLoadingInstitutions}
-            isEmpty={institutions?.length === 0}
-            error={!!error}
-          />
-          {!isLoadingInstitutions &&
-            !error &&
-            institutions &&
-            institutions?.map((institution) => {
-              return (
+        {/* Desktop View */}
+        {isDesktop ? (
+          <HStack
+            spacing={6}
+            pt={6}
+            w="full"
+            overflowX="scroll"
+            overflowY="hidden"
+            scrollBehavior="smooth"
+            css={{
+              "&::-webkit-scrollbar": {
+                width: "16px",
+                borderRadius: "8px",
+                backgroundColor: "rgba(0, 0, 0, 0.05)",
+              },
+              "&::-webkit-scrollbar-thumb": {
+                backgroundColor: "rgba(0, 0, 0, 0.05)",
+              },
+            }}
+          >
+            <HomeSectionListPlaceholder
+              isLoading={isLoadingInstitutions}
+              isEmpty={institutions?.length === 0}
+              error={!!error}
+            />
+            {!isLoadingInstitutions &&
+              !error &&
+              institutions?.map((institution) => (
                 <Card<Institution>
                   key={institution.id}
                   item={institution}
@@ -62,9 +73,47 @@ export default function InstitutionHomeSection({
                     onSelectInstitution(institutions, institutionId);
                   }}
                 />
-              );
-            })}
-        </HStack>
+              ))}
+          </HStack>
+        ) : (
+          // Mobile View with Horizontal Scroll
+          <HStack
+            spacing={4}
+            pt={6}
+            w="full"
+            overflowX="auto"
+            overflowY="hidden"
+            scrollBehavior="smooth"
+            css={{
+              "&::-webkit-scrollbar": { display: "none" },
+              msOverflowStyle: "none",
+              scrollbarWidth: "none"
+            }}
+          >
+            <HomeSectionListPlaceholder
+              isLoading={isLoadingInstitutions}
+              isEmpty={institutions?.length === 0}
+              error={!!error}
+            />
+            {!isLoadingInstitutions &&
+              !error &&
+              institutions?.map((institution) => (
+                <Box
+                  key={institution.id}
+                  // flex="0 0 auto"
+                  // w={{ base: "80vw", sm: "70vw" }}
+                  px={2} // Add padding for spacing
+                >
+                  <Card<Institution>
+                    item={institution}
+                    onSelectItem={(institutionId) => {
+                      onSelectInstitution(institutions, institutionId);
+                    }}
+                  />
+                </Box>
+              ))}
+          </HStack>
+        )}
       </Flex>
     </div>
   );

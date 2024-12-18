@@ -114,12 +114,12 @@ export default function Card<T extends Institution & Partial<Campaign>>({
               style={{ backdropFilter: "blur(4px)" }}
             />
           </HStack>
-          {!!item.startDate && (
+          {/* {!!item.startDate && (
             <HStack>
               <Text fontStyle={"italic"}>De {item.startDate} até </Text>
               <Text fontStyle={"italic"}>{item.endDate}</Text>
             </HStack>
-          )}
+          )} */}
           <Box
             position="relative"
             maxW="360px"

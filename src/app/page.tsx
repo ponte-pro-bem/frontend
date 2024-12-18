@@ -46,17 +46,17 @@ export default function Home() {
     ssr: false,
   });
 
-  if (!isDesktop) {
-    return (
-      <Center flexDir={"column"} h="100vh">
-        <Text textAlign={"center"}>
-          No momento não estamos disponíveis para dispositivos móveis
-        </Text>
-        <br />
-        <Text>Acesse ao site utilizando um computador</Text>
-      </Center>
-    );
-  }
+  // if (!isDesktop) {
+  //   return (
+  //     <Center flexDir={"column"} h="100vh">
+  //       <Text textAlign={"center"}>
+  //         No momento não estamos disponíveis para dispositivos móveis
+  //       </Text>
+  //       <br />
+  //       <Text>Acesse ao site utilizando um computador</Text>
+  //     </Center>
+  //   );
+  // }
 
   return (
     <main>
@@ -68,10 +68,7 @@ export default function Home() {
         <Element name="sobre-o-projeto">
           <AboutHomeSection />
         </Element>
-        {/* sobre-o-projeto
-
-campanhas
-contato */}
+        
         <Element name="organizacoes">
           <InstitutionHomeSection
             onSelectInstitution={(institutions, institutionId) => {

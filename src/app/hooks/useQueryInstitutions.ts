@@ -24,7 +24,7 @@ export default function useQueryInstitutions() {
       const { data } = await axios.get<Institution[]>(
         `https://app.pontedobem.org/institutions`
       );
-      // const data: Institution[] = staticInstitutions;
+
       return data;
     },
   });

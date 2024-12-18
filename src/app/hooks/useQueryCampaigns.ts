@@ -9,8 +9,8 @@ export interface Campaign {
   description: string;
   images: { key: string, url: string, id: string }[];
   pixQRCodeRaw: string;
-  startDate: string;
-  endDate: string;
+  // startDate: string;
+  // endDate: string;
   createdAt: string;
   tags: {
     id: string;
