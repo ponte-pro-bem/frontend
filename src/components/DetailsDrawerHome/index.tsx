@@ -26,13 +26,13 @@ import { useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { useForm } from "react-hook-form";
 import Markdown from 'markdown-to-jsx'
-// import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 import CurrencyInput from "react-currency-input-field";
 import ReactMarkdown from "react-markdown";
+import axios from "axios";
 interface DonationForm {
   name: string;
   cpf: string;
-  amount: number;
+  value: number;
 }
 export default function DetailsDrawerHome({
   item,
@@ -50,16 +50,9 @@ export default function DetailsDrawerHome({
 
   const onSubmit = async (data: DonationForm) => {
     try {
-      // Aqui você deve implementar a chamada POST para seu servidor
-      await fetch("/api/donations", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...data,
-          itemId: item?.id || "3",
-        }),
+      await axios.post("https://app.pontedobem.org/donations/create", {
+        ...data,
+        itemId: item?.id || "1",
       });
 
       setShowQRCode(true);
@@ -276,7 +269,7 @@ export default function DetailsDrawerHome({
                       decimalSeparator=","
                       placeholder="Valor da doação"
                       step="0.01"
-                      {...register("amount", {
+                      {...register("value", {
                         required: "Voce deve adicionar o valor da doação",
                       })}
                       w="100%"
@@ -291,9 +284,9 @@ export default function DetailsDrawerHome({
                         boxShadow: "0 0 0 1px #38A169",
                       }}
                     />
-                    {errors.amount && (
+                    {errors.value && (
                       <Text color="red.500" fontSize="sm" mt={1}>
-                        {errors.amount.message}
+                        {errors.value.message}
                       </Text>
                     )}
                   </Box>

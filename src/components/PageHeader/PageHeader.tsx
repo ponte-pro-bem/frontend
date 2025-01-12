@@ -139,6 +139,7 @@ export default function PageHeader() {
   };
 
   const MenuLink = ({ item, isMobile = false }: any) => (
+    // @ts-ignore
     <Link
       to={item.link}
       spy={true}

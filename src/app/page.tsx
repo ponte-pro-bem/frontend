@@ -27,7 +27,7 @@ import DetailsDrawerHome from "../components/DetailsDrawerHome";
 import {
   Link,
   Button,
-  Element,
+  Element as SE,
   Events,
   animateScroll as scroll,
   scrollSpy,
@@ -65,17 +65,19 @@ export default function Home() {
 
         <HomeIllustration />
 
-        <Element name="sobre-o-projeto">
+{/* @ts-ignore */}
+        <SE name="sobre-o-projeto">
           <AboutHomeSection />
-        </Element>
+        </SE>
         
-        <Element name="organizacoes">
+{/* @ts-ignore */}
+        <SE name="organizacoes">
           <InstitutionHomeSection
             onSelectInstitution={(institutions, institutionId) => {
               onSelectItem(institutions, institutionId, ENTITY.INSTITUTIONS);
             }}
           />
-        </Element>
+        </SE>
 
         <CampaignHomeSection
           onSelectCampaign={(campaigns, campaignId) => {
