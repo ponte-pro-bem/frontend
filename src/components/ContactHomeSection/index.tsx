@@ -42,13 +42,13 @@ export default function ContactHomeSection() {
   return (
     <div id="contato">
       <Flex h={{ base: "100vh", md: "calc(100vh - 96px)" }}>
-        <HStack w="100%" h="100%" flexDir={{ base: "column-reverse", md: "row" }}>
+        <HStack w="100%" h="100%" justifyContent={{ base: "flex-start" }} flexDir={{ base: "column-reverse", md: "row" }}>
           <Stack
             bg="#98BA80"
             h={{ base: "25%", md: "50%" }}
             w={{ base: "100%", md: "40%", lg: "60%" }}
             display={"flex"}
-            justifyContent={"center"}
+            justifyContent={{ base: "flex-start", md: "center" }}
             alignItems={"center"}
             borderRightRadius={{ base: 0, md: 12 }}
             py={{ base: 3, md: 0 }}
@@ -72,7 +72,7 @@ export default function ContactHomeSection() {
               Abra uma <b>campanha</b> ou compartilhe sua <b>organização</b>.
             </Text>
 
-            <HStack w={{ base: "40%", md: "70%" }} mt={4}>
+            <HStack w={{ base: "90%", md: "70%" }} mt={4}>
               <Tooltip label="Instagram">
                 <Link href={"https://www.instagram.com/pontedobem_org"} target="_blank">
                   <IconButton
