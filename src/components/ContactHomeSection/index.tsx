@@ -1,25 +1,47 @@
+import React from 'react';
 import {
   Flex,
   HStack,
   IconButton,
-  Image,
   Link,
   Show,
   Stack,
   Text,
   Tooltip,
+  useClipboard,
+  useToast,
 } from "@chakra-ui/react";
-import { FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
+const EMAIL = "pontedobem.org@gmail.com";
+
+function useContactController() {
+  const { onCopy } = useClipboard(EMAIL);
+  const toast = useToast();
+
+  const handleEmailClick = () => {
+    onCopy();
+    toast({
+      title: "Email copiado",
+      description: "O email foi copiado para a área de transferência",
+      status: "success",
+      duration: 2000,
+      isClosable: true,
+      position: "top",
+    });
+    window.location.href = `mailto:${EMAIL}`;
+  };
+
+  return { handleEmailClick };
+}
+
 export default function ContactHomeSection() {
+  const { handleEmailClick } = useContactController();
+
   return (
     <div id="contato">
-      <Flex
-        h={{ base: "100vh", md: "calc(100vh - 96px)" }}
-      //  justifyContent={"center"}
-      // alignItems={"center"}
-      >
+      <Flex h={{ base: "100vh", md: "calc(100vh - 96px)" }}>
         <HStack w="100%" h="100%" flexDir={{ base: "column-reverse", md: "row" }}>
           <Stack
             bg="#98BA80"
@@ -51,27 +73,21 @@ export default function ContactHomeSection() {
             </Text>
 
             <HStack w={{ base: "40%", md: "70%" }} mt={4}>
-              <Tooltip label="Whatsapp">
-                <Link href={"https://wa.me/"} target="_blank">
+              <Tooltip label="Instagram">
+                <Link href={"https://www.instagram.com/pontedobem_org"} target="_blank">
                   <IconButton
                     bg={"transparent"}
-                    aria-label="whatsapp"
-                    icon={<FaWhatsapp />}
+                    aria-label="instagram"
+                    icon={<FaInstagram />}
                   />
                 </Link>
               </Tooltip>
-              <Tooltip label="Instagram">
-                <IconButton
-                  bg={"transparent"}
-                  aria-label="instagram"
-                  icon={<FaInstagram />}
-                />
-              </Tooltip>
-              <Tooltip label="Email">
+              <Tooltip label="Copiar email" placement="top">
                 <IconButton
                   bg={"transparent"}
                   aria-label="email"
                   icon={<MdEmail />}
+                  onClick={handleEmailClick}
                 />
               </Tooltip>
             </HStack>
@@ -84,145 +100,23 @@ export default function ContactHomeSection() {
             alignItems={"flex-end"}
           >
             <Show above="md">
-
-              <Image
-                style={{
-                  borderRadius: "100%",
-                }}
-                height={150}
-                width={150}
-                alt="123"
-                src={"prov-image-ide.png"}
-              />
             </Show>
             <Text w={{ base: "100%", md: "90%" }} fontStyle="italic" fontSize={{ base: "lg", md: "xl" }} mt={12}>
-              "A Ponte do Bem nasceu da necessidade de unir pessoas que querem
-              ajudar com instituições que precisam de apoio. Percebemos que
-              muitas pessoas têm o desejo de contribuir, mas nem sempre sabem
-              como ou onde. Por isso, criamos uma plataforma que centraliza
-              diferentes campanhas e organizações, tornando o processo de doação
-              mais simples e transparente."
+              "Tudo começou de um sonho simples: conectar corações que querem ajudar com mãos que precisam de apoio. Quantas vezes a gente olha ao redor e pensa 'queria fazer algo', mas não sabe por onde começar? Foi pensando nisso que criamos a Ponte do Bem - um lugar onde a vontade de fazer a diferença encontra os caminhos para transformar vidas."
             </Text>
             <Text w={{ base: "100%", md: "90%" }} fontStyle="italic" fontSize={{ base: "lg", md: "xl" }} mt={2}>
-              "Ver o impacto que conseguimos gerar quando conectamos doadores e
-              instituições é verdadeiramente gratificante. Cada doação
-              representa uma ponte entre a solidariedade e a transformação
-              social."
+              "O mais incrível é ver como cada pequena ação gera ondas de esperança. Quando um doador encontra uma instituição, não é só dinheiro ou recurso que se move, é amor, é empatia, é a certeza de que juntos podemos construir um mundo mais humano e solidário."
             </Text>
 
             <Show below="md">
-
-              <Image
-                style={{
-                  borderRadius: "100%",
-                }}
-                height={{ base: 70, md: 150 }}
-                width={{ base: 70, md: 150 }}
-                alt="123"
-                src={"prov-image-ide.png"}
-              />
             </Show>
-            <Text fontSize={"lg"} fontWeight={600} pt={{ base: 0, md: 6 }}>
-              Renata Correia
+            <Text fontSize={"lg"} fontWeight={600} pt={6}>
+              Levi Correia e Lívia Correia
             </Text>
-            <Text mb={{ base: 6, md: 0 }}>Idealizadora da Ponte do bem</Text>
+            <Text mb={{ base: 6, md: 0 }}>Idealizadores da Ponte do Bem</Text>
           </Stack>
         </HStack>
       </Flex>
     </div>
   );
 }
-// import {
-//   Box,
-//   Flex,
-//   HStack,
-//   IconButton,
-//   Image,
-//   Link,
-//   Stack,
-//   Text,
-//   Tooltip,
-// } from "@chakra-ui/react";
-// import { FaInstagram, FaWhatsapp } from "react-icons/fa";
-// import { MdEmail } from "react-icons/md";
-
-// export default function ContactHomeSection() {
-//   return (
-//     <Flex
-//       direction={{ base: "column", md: "row" }}
-//       align={{ base: "center", md: "flex-start" }}
-//       justify="space-between"
-//       px={{ base: 4, md: 8 }}
-//       py={8}
-//       bg="gray.100"
-//       borderRadius="lg"
-//       boxShadow="lg"
-//     >
-//       <Stack spacing={4} maxW={{ base: "100%", md: "50%" }} textAlign={{ base: "center", md: "left" }}>
-//         <Text fontSize="2xl" fontWeight="bold" color="teal.600">
-//           Entre em contato!
-//         </Text>
-//         <Text fontSize="md" color="gray.600">
-//           Abra uma campanha ou compartilhe sua organização.
-//         </Text>
-//         <HStack spacing={4} justify={{ base: "center", md: "flex-start" }}>
-//           <Tooltip label="Instagram">
-//             <IconButton
-//               as={Link}
-//               href="https://instagram.com"
-//               aria-label="Instagram"
-//               icon={<FaInstagram />}
-//               colorScheme="pink"
-//               isRound
-//             />
-//           </Tooltip>
-//           <Tooltip label="WhatsApp">
-//             <IconButton
-//               as={Link}
-//               href="https://wa.me"
-//               aria-label="WhatsApp"
-//               icon={<FaWhatsapp />}
-//               colorScheme="green"
-//               isRound
-//             />
-//           </Tooltip>
-//           <Tooltip label="Email">
-//             <IconButton
-//               as={Link}
-//               href="mailto:email@pontedobem.com"
-//               aria-label="Email"
-//               icon={<MdEmail />}
-//               colorScheme="blue"
-//               isRound
-//             />
-//           </Tooltip>
-//         </HStack>
-//       </Stack>
-
-//       <Stack spacing={4} maxW={{ base: "100%", md: "50%" }} mt={{ base: 8, md: 0 }}>
-//         <Text fontSize="md" fontStyle="italic" color="gray.600">
-//           "A Ponte do Bem nasceu da necessidade de unir pessoas que querem
-//           ajudar com instituições que precisam de apoio. Percebemos que
-//           muitas pessoas têm o desejo de contribuir, mas nem sempre sabem
-//           como ou onde. Por isso, criamos uma plataforma que centraliza
-//           diferentes campanhas e organizações, tornando o processo de doação
-//           mais simples e transparente."
-//         </Text>
-//         <Text fontSize="md" fontStyle="italic" color="gray.600">
-//           "Ver o impacto que conseguimos gerar quando conectamos doadores e
-//           instituições é verdadeiramente gratificante. Cada doação
-//           representa uma ponte entre a solidariedade e a transformação
-//           social."
-//         </Text>
-//         <Box>
-//           <Text fontSize="lg" fontWeight="bold" color="teal.600">
-//             Renata Correia
-//           </Text>
-//           <Text fontSize="sm" color="gray.500">
-//             Idealizadora da Ponte do Bem
-//           </Text>
-//         </Box>
-//       </Stack>
-//     </Flex>
-//   );
-// }
