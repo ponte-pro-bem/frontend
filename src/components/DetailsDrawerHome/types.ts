@@ -5,4 +5,5 @@ export interface DetailsDrawerProps {
     item: Campaign | Institution | null;
     isOpen: boolean;
     onClose: () => void;
+    org?: boolean
   }

@@ -91,6 +91,7 @@ export default function Home() {
       </Flex>
 
       <DetailsDrawerHome
+        org={!!selectedInstitution}
         item={selectedCampaign ?? selectedInstitution}
         isOpen={isOpen}
         onClose={onClose}

@@ -255,6 +255,7 @@ export const InstitutionsPage = () => {
         )}
       </Box>
       <DetailsDrawerHome
+        org
         item={selectedInstitution}
         isOpen={isOpen}
         onClose={onClose}

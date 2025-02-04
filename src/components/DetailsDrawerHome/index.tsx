@@ -35,6 +35,7 @@ interface DonationForm {
   value: number;
 }
 export default function DetailsDrawerHome({
+  org = false,
   item,
   isOpen,
   onClose,
@@ -52,7 +53,8 @@ export default function DetailsDrawerHome({
     try {
       await axios.post("https://app.pontedobem.org/donations/create", {
         ...data,
-        itemId: item?.id || "1",
+        institutionId: org ? item?.id : undefined,
+        campaignId: !org ? item?.id : undefined,
       });
 
       setShowQRCode(true);
