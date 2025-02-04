@@ -75,7 +75,12 @@ export default function DetailsDrawerHome({
   if (!item) return null;
 
   return (
-    <Drawer isOpen={isOpen} size={"xl"} placement="right" onClose={onClose}>
+    <Drawer isOpen={isOpen} size={"xl"} placement="right" onClose={() => {
+      onClose();
+      setShowDonationForm(false);
+      setShowQRCode(false);
+      setCopied(false);
+    }}>
       <DrawerOverlay />
       <DrawerContent>
         <DrawerCloseButton />
