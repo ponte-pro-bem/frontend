@@ -1,7 +1,17 @@
 import { Flex, Text, VStack, Box } from "@chakra-ui/react";
 import { LogoHero } from "../../app/illustrations/hero";
+import { useEffect, useState } from "react";
 
 export default function HomeIllustration() {
+  const [userSession, setUserSession] = useState({ name: "" });
+
+  useEffect(() => {
+    const savedSession = localStorage.getItem("userSession");
+    if (savedSession) {
+      setUserSession(JSON.parse(savedSession));
+    }
+  }, []);
+
   return (
     <Flex
       h="100vh"
@@ -17,10 +27,26 @@ export default function HomeIllustration() {
       <VStack
         spacing={6}
         align={{ base: "center", md: "flex-start" }}
-      // w={{ base: "100%", md: "70%" }}
-      // bg={'red'}
-      // pr={{ base: 0, md: 10 }}
+        // w={{ base: "100%", md: "70%" }}
+        // bg={'red'}
+        // pr={{ base: 0, md: 10 }}
       >
+        <Text></Text>
+        <Text
+          fontSize={{ base: "2xl", md: "3xl", lg: "4xl", xl: "6xl" }}
+          fontWeight="bold"
+          lineHeight="shorter"
+        >
+          Olá,{" "}
+          <Text
+            color="brand.green"
+            as="span"
+            css={{ textTransform: "capitalize" }}
+          >
+            {userSession?.name.split(" ")[0] || "visitante"}
+          </Text>
+          !
+        </Text>
         <Text
           fontSize={{ base: "2xl", md: "3xl", lg: "4xl", xl: "6xl" }}
           fontWeight="bold"

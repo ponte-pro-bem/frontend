@@ -19,21 +19,31 @@ import {
 } from "@chakra-ui/react";
 import { DetailsDrawerProps } from "./types";
 import { Carousel } from "react-responsive-carousel";
-import { FaBookmark, FaHandHoldingHeart, FaPix } from "react-icons/fa6";
+import {
+  FaBookmark,
+  FaForwardStep,
+  FaHandHoldingHeart,
+  FaPix,
+  FaSackDollar,
+} from "react-icons/fa6";
 import { QRCodeSVG } from "qrcode.react";
 import { MdCheck, MdContentCopy } from "react-icons/md";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { useForm } from "react-hook-form";
-import Markdown from 'markdown-to-jsx'
+import Markdown from "markdown-to-jsx";
 import CurrencyInput from "react-currency-input-field";
 import ReactMarkdown from "react-markdown";
 import axios from "axios";
+import { FaRegUser, FaUserAlt } from "react-icons/fa";
+import { useUserStore } from '../../stores/useUserStore';
+
 interface DonationForm {
   name: string;
   cpf: string;
   value: number;
 }
+
 export default function DetailsDrawerHome({
   org = false,
   item,
@@ -43,6 +53,11 @@ export default function DetailsDrawerHome({
   const [copied, setCopied] = useState(false);
   const [showDonationForm, setShowDonationForm] = useState(false);
   const [showQRCode, setShowQRCode] = useState(false);
+  const [step, setStep] = useState(1);
+  
+  // Substituir o userSession pelo store do Zustand
+  const { user, setUser, clearUser } = useUserStore();
+
   const {
     register,
     handleSubmit,
@@ -51,8 +66,10 @@ export default function DetailsDrawerHome({
 
   const onSubmit = async (data: DonationForm) => {
     try {
-      await axios.post("https://app.pontedobem.org/donations/create", {
+      await axios.post("http://localhost:8080/donations/create", {
         ...data,
+        name: user?.name,
+        cpf: user?.cpf,
         institutionId: org ? item?.id : undefined,
         campaignId: !org ? item?.id : undefined,
       });
@@ -72,15 +89,31 @@ export default function DetailsDrawerHome({
     }, 2000);
   };
 
+  // Função para salvar dados da primeira etapa
+  const handleFirstStep = (data: { name: string; cpf: string }) => {
+    setUser(data);
+    setStep(2);
+  };
+
+  const handleRemoveSession = () => {
+    clearUser();
+    setStep(1);
+  };
+
   if (!item) return null;
 
   return (
-    <Drawer isOpen={isOpen} size={"xl"} placement="right" onClose={() => {
-      onClose();
-      setShowDonationForm(false);
-      setShowQRCode(false);
-      setCopied(false);
-    }}>
+    <Drawer
+      isOpen={isOpen}
+      size={"xl"}
+      placement="right"
+      onClose={() => {
+        onClose();
+        setShowDonationForm(false);
+        setShowQRCode(false);
+        setCopied(false);
+      }}
+    >
       <DrawerOverlay />
       <DrawerContent>
         <DrawerCloseButton />
@@ -133,7 +166,7 @@ export default function DetailsDrawerHome({
                   <Stack ml={3} key={image.id}>
                     <Image
                       maxH={450}
-                      objectFit={'cover'}
+                      objectFit={"cover"}
                       src={image.url}
                       style={{ borderRadius: 24, marginLeft: 10 }}
                       alt={image.key}
@@ -149,15 +182,13 @@ export default function DetailsDrawerHome({
               {item.description}
             </Text> */}
             <Text fontSize={"lg"} whiteSpace="pre-line" lineHeight="1.8">
-              <Markdown>
-                {item.description}
-              </Markdown>
+              <Markdown>{item.description}</Markdown>
             </Text>
             {/* <ReactMarkdown children={item.description} />; */}
           </Box>
 
           <VStack pb={36} spacing={6} width="100%" alignItems="center">
-            {!showDonationForm && !showQRCode && (
+            {!user && !showDonationForm && !showQRCode && (
               <>
                 <Box
                   position="fixed"
@@ -199,112 +230,144 @@ export default function DetailsDrawerHome({
                 </Box>
               </>
             )}
+
             <Divider mb={6} />
-            {showDonationForm && !showQRCode && (
-              <Box
-                as="form"
-                onSubmit={handleSubmit(onSubmit)}
-                width="100%"
-                maxWidth="500px"
-              >
-                <HStack alignItems={"start"}>
-                  <Icon
-                    pt={2}
-                    as={FaBookmark}
-                    fontSize={36}
-                    color="brand.green"
-                  ></Icon>
-                  <Text fontSize={"lg"} fontWeight={700} color="brand.green">
-                    Nos ajude a registrar as doações feitas pela Ponte do Bem.
-                  </Text>
-                </HStack>
-                <Text fontSize={"xs"} textAlign="left" py={5}>
-                  Preencha seus dados e qual o valor de sua doação para apoiar{" "}
-                  <b>{item.name}</b>
-                </Text>
-                <VStack spacing={4}>
-                  <Box width="100%">
-                    <Input
-                      placeholder="Nome completo"
-                      {...register("name")}
-                      w="100%"
-                      borderWidth={2}
-                      borderColor={"brand.green"}
-                      _placeholder={{
-                        color: "gray.400",
-                        fontWeight: 700,
-                      }}
-                      _focus={{
-                        borderColor: "green.500",
-                        boxShadow: "0 0 0 1px #38A169",
-                      }}
-                    />
-                    {errors.cpf && (
-                      <Text color="red.500" fontSize="sm" mt={1}>
-                        {errors.cpf.message}
-                      </Text>
-                    )}
+            {(showDonationForm || !!user) && !showQRCode && (
+              <Box width="100%" maxWidth="500px">
+                {step === 1 && !user ? (
+                  // Primeira etapa - Dados pessoais
+                  <Box as="form" onSubmit={handleSubmit(handleFirstStep)}>
+                    <HStack alignItems={"start"}>
+                      <Icon
+                        pt={2}
+                        as={FaRegUser}
+                        fontSize={36}
+                        color="brand.green"
+                      />
+                      <VStack align="start" spacing={1}>
+                        <Text
+                          fontSize={"lg"}
+                          fontWeight={700}
+                          color="brand.green"
+                        >
+                          Quem está doando?
+                        </Text>
+                        <Text fontSize={"sm"} color="gray.500">
+                          Precisamos de algumas informações para concluir a
+                          doação
+                        </Text>
+                      </VStack>
+                    </HStack>
+                    <VStack spacing={4} mt={4}>
+                      <Box width="100%">
+                        <Input
+                          placeholder="Nome completo"
+                          {...register("name", {
+                            required: "Nome é obrigatório",
+                          })}
+                          w="100%"
+                          borderWidth={2}
+                          borderColor={"brand.green"}
+                          _placeholder={{
+                            color: "gray.400",
+                            fontWeight: 700,
+                          }}
+                        />
+                      </Box>
+                      <Box width="100%">
+                        <Input
+                          placeholder="CPF"
+                          {...register("cpf", {
+                            required: "CPF é obrigatório",
+                          })}
+                          w="100%"
+                          borderWidth={2}
+                          borderColor={"brand.green"}
+                        />
+                      </Box>
+                      <Button
+                        type="submit"
+                        width="100%"
+                        bgColor={"brand.green"}
+                      >
+                        Continuar
+                      </Button>
+                    </VStack>
                   </Box>
-                  <Box width="100%">
-                    <Input
-                      placeholder="CPF"
-                      {...register("cpf")}
-                      w="100%"
-                      borderWidth={2}
-                      borderColor={"brand.green"}
-                      _placeholder={{
-                        color: "gray.400",
-                        fontWeight: 700,
+                ) : (
+                  // Segunda etapa - Valor da doação
+                  <Box as="form" onSubmit={handleSubmit(onSubmit)}>
+                    <HStack alignItems={"start"}>
+                      <Icon
+                        pt={2}
+                        as={FaUserAlt}
+                        fontSize={36}
+                        color="brand.green"
+                      />
+                      <VStack align="start" spacing={1}>
+                        <Text
+                          fontSize={"lg"}
+                          fontWeight={700}
+                          color="brand.green"
+                          css={{
+                            textTransform: "capitalize",
+                          }}
+                        >
+                          {user?.name}
+                        </Text>
+                        <Text fontSize={"sm"} color="gray.500">
+                          CPF: {user?.cpf}
+                        </Text>
+                      </VStack>
+                    </HStack>
+                    <Button
+                      mt={4}
+                      variant="link"
+                      color="brand.green"
+                      fontWeight={400}
+                      textDecoration={"underline"}
+                      onClick={() => {
+                        handleRemoveSession();
+                        setStep(1);
                       }}
-                      _focus={{
-                        borderColor: "green.500",
-                        boxShadow: "0 0 0 1px #38A169",
-                      }}
-                    />
-                    {errors.cpf && (
-                      <Text color="red.500" fontSize="sm" mt={1}>
-                        {errors.cpf.message}
+                    >
+                      Editar dados do doador
+                    </Button>
+                    <Text fontSize={"md"} textAlign="left" py={5}>
+                      Defina o valor que deseja doar para <b>{item.name}</b>
+                    </Text>
+                    <VStack spacing={4}>
+                      <Box width="100%">
+                        <Input
+                          as={CurrencyInput}
+                          decimalsLimit={2}
+                          prefix="R$ "
+                          groupSeparator="."
+                          decimalSeparator=","
+                          placeholder="Valor da doação"
+                          {...register("value", {
+                            required: "Você deve adicionar o valor da doação",
+                          })}
+                          w="100%"
+                          borderWidth={2}
+                          borderColor={"brand.green"}
+                        />
+                      </Box>
+                      <Button
+                        type="submit"
+                        width="100%"
+                        bgColor={"brand.green"}
+                      >
+                        Confirmar Doação
+                      </Button>
+                      <Text fontSize={"xs"}>
+                        Toda doação é enviada diretamente à campanha ou
+                        instituição, não possuímos nenhum controle do valor
+                        contribuído.
                       </Text>
-                    )}
+                    </VStack>
                   </Box>
-                  <Box width="100%">
-                    <Input
-                      as={CurrencyInput}
-                      decimalsLimit={2}
-                      prefix="R$ "
-                      groupSeparator="."
-                      decimalSeparator=","
-                      placeholder="Valor da doação"
-                      step="0.01"
-                      {...register("value", {
-                        required: "Voce deve adicionar o valor da doação",
-                      })}
-                      w="100%"
-                      borderWidth={2}
-                      borderColor={"brand.green"}
-                      _placeholder={{
-                        color: "gray.400",
-                        fontWeight: 700,
-                      }}
-                      _focus={{
-                        borderColor: "green.500",
-                        boxShadow: "0 0 0 1px #38A169",
-                      }}
-                    />
-                    {errors.value && (
-                      <Text color="red.500" fontSize="sm" mt={1}>
-                        {errors.value.message}
-                      </Text>
-                    )}
-                  </Box>
-                  <Button type="submit" colorScheme="green" width="100%">
-                    Confirmar Doação
-                  </Button>
-                  <Text fontSize={"xs"}>
-                    Toda doação é enviada diretamente a campanha ou instituição,
-                    não possuímos nenhum controle do valor contribuído.
-                  </Text>
-                </VStack>
+                )}
               </Box>
             )}
             {showQRCode && (
