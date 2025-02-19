@@ -66,7 +66,9 @@ export default function DetailsDrawerHome({
 
   const onSubmit = async (data: DonationForm) => {
     try {
-      await axios.post("http://localhost:8080/donations/create", {
+      console.log(data);
+      
+      await axios.post("https://app.pontedobem.org/donations/create", {
         ...data,
         name: user?.name,
         cpf: user?.cpf,
