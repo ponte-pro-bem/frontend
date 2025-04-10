@@ -79,11 +79,11 @@ export default function Home() {
           />
         </SE>
 
-        <CampaignHomeSection
+        {/* <CampaignHomeSection
           onSelectCampaign={(campaigns, campaignId) => {
             onSelectItem(campaigns, campaignId, ENTITY.CAMPAIGNS);
           }}
-        />
+        /> */}
 
         <ContactHomeSection />
 
