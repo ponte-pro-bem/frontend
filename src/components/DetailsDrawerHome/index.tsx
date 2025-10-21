@@ -68,7 +68,7 @@ export default function DetailsDrawerHome({
     try {
       console.log(data);
       
-      await axios.post("https://app.pontedobem.org/donations/create", {
+      await axios.post("https://d2x45crat7p1yk.cloudfront.net/donations/create", {
         ...data,
         name: user?.name,
         cpf: user?.cpf,
